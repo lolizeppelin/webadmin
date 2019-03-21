@@ -17,7 +17,7 @@ class KeywordRouters(router.ComposableRouter):
         collection = mapper.collection(collection_name='keywords',
                                        resource_name='keyword',
                                        controller=_controller,
-                                       path_prefix='/%s' % common.NAME,
+                                       path_prefix='/%s/private' % common.NAME,
                                        member_prefix='/{id}',
                                        collection_actions=['index'],
                                        member_actions=[])
@@ -32,7 +32,7 @@ class LogsRouters(router.ComposableRouter):
         collection = mapper.collection(collection_name='logs',
                           resource_name='log',
                           controller=_controller,
-                          path_prefix='/%s' % common.NAME,
+                          path_prefix='/%s/private' % common.NAME,
                           member_prefix='/id}',
                           collection_actions=['index'],
                           member_actions=['show'])
@@ -42,8 +42,6 @@ class LogsRouters(router.ComposableRouter):
 class Routers(router.RoutersBase):
 
     def append_routers(self, mapper, routers=None):
-        # mapper.redirect("/%s/manager/login/{username:.*}" % common.NAME,
-        #                 "/goperation/login/{username}")
         KeywordRouters(mapper)
         LogsRouters(mapper)
 
