@@ -38,11 +38,11 @@ class KeywordRequest(MiddlewareContorller):
         session = endpoint_session()
         ret_dict = resultutils.bulk_results(session,
                                             model=KeyWord,
-                                            columns=[KeyWord.id,
+                                            columns=[KeyWord.kid,
                                                      KeyWord.value,
                                                      ],
-                                            counter=KeyWord.cid,
-                                            order=KeyWord.id, desc=True,
+                                            counter=KeyWord.kid,
+                                            order=KeyWord.kid, desc=True,
                                             limit=100000)
         return ret_dict
 
