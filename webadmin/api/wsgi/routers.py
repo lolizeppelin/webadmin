@@ -33,7 +33,7 @@ class LogsRouters(router.ComposableRouter):
                           resource_name='log',
                           controller=_controller,
                           path_prefix='/%s/private' % common.NAME,
-                          member_prefix='/id}',
+                          member_prefix='/{id}',
                           collection_actions=['index'],
                           member_actions=['show'])
 

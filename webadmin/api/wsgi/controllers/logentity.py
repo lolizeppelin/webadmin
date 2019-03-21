@@ -55,12 +55,13 @@ class LogsRequest(MiddlewareContorller):
 
     def show(self, req, id, body=None):
         session = endpoint_session(readonly=True)
+        id = int(id)
         query = model_query(session, LogEntity, filter=LogEntity.id == id)
         log = query.one()
         return resultutils.results(result='show log success',
                                    data=[dict(name=log.id,
                                               ip=log.ip,
-                                              time=log.atime,
+                                              atime=log.atime,
                                               path=log.path,
                                               status=log.status,
                                               size=log.size,
