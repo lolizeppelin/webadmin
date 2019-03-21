@@ -61,8 +61,8 @@ install -p -D -m 0754 sbin/* %{buildroot}%{_sbindir}
 %{python_sitelib}/%{proj_name}/cmd
 %{python_sitelib}/%{proj_name}-%{version}-py?.?.egg-info
 %{_sbindir}/gop%{proj_name}-init
-%doc README.md
-%doc doc/*
+#%doc README.md
+#%doc doc/*
 
 
 %package server
