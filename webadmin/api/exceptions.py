@@ -1,3 +1,3 @@
 class WebAdminError(Exception):
-    """ flutter comic error"""
+    """ webadmin comic error"""
 

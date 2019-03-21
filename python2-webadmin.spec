@@ -1,6 +1,6 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 
-%define proj_name fluttercomic
+%define proj_name webadmin
 
 %define _release RELEASEVERSION
 
@@ -21,12 +21,10 @@ Requires:       python >= 2.6.6
 Requires:       python < 3.0
 Requires:       python-goperation >= 1.0
 Requires:       python-goperation < 1.1
-Requires:       ImageMagick >= 6.7
-Requires:       python-ndg_httpsclient >= 0.4.0
 
 
 %description
-A flutter comic app web server
+A webadmin test web
 
 %prep
 %setup -q -n %{proj_name}-%{version}
@@ -44,7 +42,7 @@ install -p -D -m 0644 etc/endpoints/*.conf.sample %{buildroot}%{_sysconfdir}/gop
 install -d %{buildroot}%{_sbindir}
 install -d %{buildroot}%{_bindir}
 install -p -D -m 0754 sbin/* %{buildroot}%{_sbindir}
-install -p -D -m 0755 bin/* %{buildroot}%{_bindir}
+#install -p -D -m 0755 bin/* %{buildroot}%{_bindir}
 
 
 %clean
@@ -60,35 +58,28 @@ install -p -D -m 0755 bin/* %{buildroot}%{_bindir}
 %{python_sitelib}/%{proj_name}/api/*.pyc
 %{python_sitelib}/%{proj_name}/api/*.pyo
 %{python_sitelib}/%{proj_name}/api/client
-%dir %{python_sitelib}/%{proj_name}/plugin
-%{python_sitelib}/%{proj_name}/plugin/*
 %{python_sitelib}/%{proj_name}/cmd
 %{python_sitelib}/%{proj_name}-%{version}-py?.?.egg-info
 %{_sbindir}/%{proj_name}-init
-%{_bindir}/%{proj_name}-resize
-%{_bindir}/%{proj_name}-websocket
 %doc README.md
 %doc doc/*
 
 
 %package server
-Summary:        xiaochen go game rpc wsgi server
+Summary:        webadmin wsgi server
 Group:          Development/Libraries
 Requires:       %{name} == %{version}
 Requires:       python-goperation-server >= 1.0
 Requires:       python-goperation-server < 1.1
-Requires:       python-lxml >= 3.2.5
-Requires:       python2-xmltodict >= 0.10.1
-
 
 %description server
-Flutter comic wsgi routes
+webadmin wsgi routes
 
 %files server
 %defattr(-,root,root,-)
 %dir %{python_sitelib}/%{proj_name}/api/wsgi
 %{python_sitelib}/%{proj_name}/api/wsgi/*
-%{_sysconfdir}/goperation/endpoints/fluttercomic.server.conf.sample
+%{_sysconfdir}/goperation/endpoints/webadmin.server.conf.sample
 
 %changelog
 

@@ -2,7 +2,7 @@
 import os
 import sys
 
-from fluttercomic import __version__
+from webadmin import __version__
 
 try:
     from setuptools import setup, find_packages
@@ -38,22 +38,19 @@ setup(
                       'simpleutil<1.1',
                       'simpleservice>=1.0',
                       'simpleservice<1.0',
-                      'lxml>=3.2.5',
-                      'xmltodict>=0.10.1',
-                      'ndg_httpsclient>=0.4.0'
                       ),
-    name='fluttercomic',
+    name='webadmin',
     version=__version__,
-    description='A flutter comic app web server',
+    description='A webadmin server',
     long_description=long_description,
-    url='http://github.com/lolizeppelin/fluttercomic',
+    url='http://github.com/lolizeppelin/webadmin',
     author='Lolizeppelin',
     author_email='lolizeppelin@gmail.com',
     maintainer='Lolizeppelin',
     maintainer_email='lolizeppelin@gmail.com',
-    keywords=['fluttercomic'],
+    keywords=['webadmin'],
     license='MIT',
-    packages=find_packages(include=['fluttercomic*']),
+    packages=find_packages(include=['webadmin*']),
     tests_require=['pytest>=1.9.0'],
     cmdclass={'test': PyTest},
     classifiers=[
