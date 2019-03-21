@@ -42,6 +42,8 @@ class LogsRouters(router.ComposableRouter):
 class Routers(router.RoutersBase):
 
     def append_routers(self, mapper, routers=None):
+        mapper.redirect("/%s/manager/login/{username:.*}" % common.NAME,
+                        "/goperation/login/{username}")
         KeywordRouters(mapper)
         LogsRouters(mapper)
 
