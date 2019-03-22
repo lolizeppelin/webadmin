@@ -32,7 +32,6 @@ FAULT_MAP = {
 @singleton.singleton
 class KeywordRequest(MiddlewareContorller):
 
-    ADMINAPI = False
 
     def index(self, req, body=None):
         session = endpoint_session()

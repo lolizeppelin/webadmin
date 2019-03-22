@@ -34,7 +34,6 @@ FAULT_MAP = {
 @singleton.singleton
 class LogsRequest(MiddlewareContorller):
 
-    ADMINAPI = False
 
     def index(self, req, body=None):
         session = endpoint_session()
@@ -42,14 +41,13 @@ class LogsRequest(MiddlewareContorller):
         post = int(body.get('post', 0))
         limit = int(body.get('limit', 0))
         timeline = int(body.get('timeline', 0))
+        if limit < 0:
+            raise InvalidArgument('NO for limit less then 0')
         if post and timeline:
             raise InvalidArgument('Both post and timeline over 0')
         filter = None
         if post > 0:
-            if limit < 0:
-                post -= limit
-            if post > 0:
-                filter = LogEntity.id < post
+            filter = LogEntity.id < post
         elif timeline:
             filter = LogEntity.atime < timeline
         ret_dict = resultutils.bulk_results(session,
@@ -59,7 +57,8 @@ class LogsRequest(MiddlewareContorller):
                                                      LogEntity.atime,
                                                      LogEntity.path],
                                             counter=LogEntity.id,
-                                            order=LogEntity.id, desc=True,
+                                            order=LogEntity.id,
+                                            desc=True,
                                             filter=filter,
                                             limit=abs(limit))
         return ret_dict
